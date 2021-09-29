@@ -133,7 +133,7 @@ namespace ApiBackendPI.Controllers
 	        catch (Exception)
 	        {
                 return BadRequest("Request inválido!");
-	        }
+	        } 
         }
     }
 }
