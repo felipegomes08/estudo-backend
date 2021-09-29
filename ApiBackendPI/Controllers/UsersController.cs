@@ -28,7 +28,7 @@ namespace ApiBackendPI.Controllers
                 var users = await _userService.GetUsers();
                 return Ok(users);
 	        }
-	        catch () 
+	        catch 
 	        {
                 return BadRequest("Erro ao obter usuários!");
                 //return StatusCode(StatusCode.Status500InternalServerError, "Erro ao obter usuários");
@@ -48,7 +48,7 @@ namespace ApiBackendPI.Controllers
                 }
                 return Ok(users);
 	         }
-	        catch ()
+	        catch
 	         {
                 return BadRequest("Request inválido!");
                 //return StatusCode(StatusCode.Status500InternalServerError, "Erro ao obter usuários");
@@ -62,14 +62,11 @@ namespace ApiBackendPI.Controllers
 	        {
                 var user = await _userService.GetUser(id);
 
-                if(user == null)
-                {
-                    return NotFound($"Não existe aluno com id={id}");
-
-                    return Ok(user);
-                }
+                if(user == null) return NotFound($"Não existe aluno com id={id}");
+                    
+                return Ok(user);
 	        }
-	        catch ()
+	        catch
 	        {
                 return BadRequest("Request inválido!");
 	        }
@@ -84,7 +81,7 @@ namespace ApiBackendPI.Controllers
 
                 return CreatedAtRoute(nameof(GetUser), new { id = user.Id }, user); 
 	        }
-	        catch ()
+	        catch
 	        {
                 return BadRequest("Request inválido!");
 	        }
